@@ -8,20 +8,32 @@ namespace QuizMaker
 
         static void Main(string[] args)
         {
-            List<Quiz> questions = new List<Quiz>();
+            //Get from UI method
+            int numberOfQuestions = 0;
+
+            List<Question> quizList = new List<Question>();
+
             //TODO: use a loop of some sort to make questions.Add be able to store / add multiple questions.
-            questions.Add(new Quiz
+            for (int i = 0; i < numberOfQuestions; i++)
             {
-                Question = "TODO:methodForQuestion",
-                IncorrectChoice = "TODO:methodForMultipleChoices",
-                CorrectChoice = "TODO:methodForOneAnswer"
+            quizList.Add(new Question
+            {
+                theQuestion = "TODO:Calls a methodForQuestion",
+                CorrectChoice = "TODO:Calls methodForOneAnswer", 
+                IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
+                IncorrectChoice2 = "same",
+                IncorrectChoice3 ="same"
             });
+            }
         }
-        public class Quiz
+        public class Question
         {
-            public string Question { get; set; }
+            public string theQuestion { get; set; }
             public string CorrectChoice { get; set; }
-            public string IncorrectChoice { get; set; }
+            public string IncorrectChoice1 { get; set; }
+            public string IncorrectChoice2 { get; set; }
+
+            public string IncorrectChoice3{ get; set; }
 
         }
     }
