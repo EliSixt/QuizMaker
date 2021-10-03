@@ -25,7 +25,9 @@ namespace QuizMaker
                     CorrectChoice = "TODO:Calls methodForOneAnswer",
                     IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
                     IncorrectChoice2 = "same",
-                    IncorrectChoice3 = "same"
+                    IncorrectChoice3 = "same",
+                    Response = "UI method that inserts the response here to compare later." +
+                    " (duplicates the choice here to compare later)"
                 });
             }
 
@@ -41,8 +43,10 @@ namespace QuizMaker
             foreach (var i in randomOrderQuizList)
             {
                 // UI method to display question and also random choices
-                // Get response
+                // Get response, insert response into object.
             }
+
         }
+
     }
 }

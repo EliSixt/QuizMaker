@@ -13,6 +13,7 @@ public class Class1
         public string IncorrectChoice1 { get; set; }
         public string IncorrectChoice2 { get; set; }
         public string IncorrectChoice3 { get; set; }
+        public string Response { get; set; }
 
     }
 }
