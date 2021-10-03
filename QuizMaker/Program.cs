@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Class1;
 
 namespace QuizMaker
 {
@@ -17,15 +18,15 @@ namespace QuizMaker
             //TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
             for (int i = 0; i < numberOfQuestions; i++)
             {
-            quizList.Add(new Question
-            {
-                //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
-                theQuestion = "TODO:Calls a methodForQuestion",
-                CorrectChoice = "TODO:Calls methodForOneAnswer", 
-                IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
-                IncorrectChoice2 = "same",
-                IncorrectChoice3 ="same"
-            });
+                quizList.Add(new Question
+                {
+                    //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
+                    TheQuestion = "TODO:Calls a methodForQuestion",
+                    CorrectChoice = "TODO:Calls methodForOneAnswer",
+                    IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
+                    IncorrectChoice2 = "same",
+                    IncorrectChoice3 = "same"
+                });
             }
 
             //TODO:
@@ -39,18 +40,9 @@ namespace QuizMaker
 
             foreach (var i in randomOrderQuizList)
             {
-                // UI method to display question and choices
+                // UI method to display question and also random choices
                 // Get response
             }
-        }
-        public class Question
-        {
-            public string theQuestion { get; set; }
-            public string CorrectChoice { get; set; }
-            public string IncorrectChoice1 { get; set; }
-            public string IncorrectChoice2 { get; set; }
-            public string IncorrectChoice3{ get; set; }
-
         }
     }
 }
