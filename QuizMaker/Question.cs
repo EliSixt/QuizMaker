@@ -1,13 +1,10 @@
 ﻿using System;
 
-public class Class1
+namespace QuizMaker
 {
-    public Class1()
-    {
-
-    }
     public class Question
     {
+
         public string TheQuestion { get; set; }
         public string CorrectChoice { get; set; }
         public string IncorrectChoice1 { get; set; }
@@ -17,3 +14,4 @@ public class Class1
 
     }
 }
+

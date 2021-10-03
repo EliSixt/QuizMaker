@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using static Class1;
+
 
 namespace QuizMaker
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             //Get from UI method. Ask how many questions they're planning on doing.
