@@ -12,7 +12,7 @@ namespace QuizMaker
             //Get from UI method. Ask how many questions they're planning on doing.
             int numberOfQuestions = 0;
 
-            List<Question> quizList = new List<Question>();
+            List<Question> quizList = GetTestQuestions(); 
 
             //TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
             for (int i = 0; i < numberOfQuestions; i++)
@@ -45,6 +45,44 @@ namespace QuizMaker
                 // Get response, insert response into object.
             }
 
+        }
+
+        static List<Question> GetTestQuestions()
+        {
+            List<Question> quizList = new();
+            quizList.Add(new Question
+            {
+                //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
+                TheQuestion = "TODO:Calls a methodForQuestion",
+                CorrectChoice = "TODO:Calls methodForOneAnswer",
+                IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
+                IncorrectChoice2 = "same",
+                IncorrectChoice3 = "same",
+                Response = "UI method that inserts the response here to compare later." +
+                    " (duplicates the choice here to compare later)"
+            });
+            quizList.Add(new Question
+            {
+                //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
+                TheQuestion = "TODO:Calls a methodForQuestion",
+                CorrectChoice = "TODO:Calls methodForOneAnswer",
+                IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
+                IncorrectChoice2 = "same",
+                IncorrectChoice3 = "same",
+                Response = "UI method that inserts the response here to compare later." +
+                    " (duplicates the choice here to compare later)"
+            }); quizList.Add(new Question
+            {
+                //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
+                TheQuestion = "TODO:Calls a methodForQuestion",
+                CorrectChoice = "TODO:Calls methodForOneAnswer",
+                IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
+                IncorrectChoice2 = "same",
+                IncorrectChoice3 = "same",
+                Response = "UI method that inserts the response here to compare later." +
+                     " (duplicates the choice here to compare later)"
+            });
+            return quizList;
         }
 
     }
