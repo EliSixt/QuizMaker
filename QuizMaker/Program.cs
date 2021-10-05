@@ -10,25 +10,23 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             //Get from UI method. Ask how many questions they're planning on doing.
-            int numberOfQuestions = 0;
+            //int numberOfQuestions = 0;
 
-            List<Question> quizList = GetTestQuestions(); 
+            List<FlashCard> quizList = GetTestQuestions();
 
-            //TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
-            for (int i = 0; i < numberOfQuestions; i++)
-            {
-                quizList.Add(new Question
-                {
-                    //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
-                    TheQuestion = "TODO:Calls a methodForQuestion",
-                    CorrectChoice = "TODO:Calls methodForOneAnswer",
-                    IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
-                    IncorrectChoice2 = "same",
-                    IncorrectChoice3 = "same",
-                    Response = "UI method that inserts the response here to compare later." +
-                    " (duplicates the choice here to compare later)"
-                });
-            }
+            ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
+            //for (int i = 0; i < numberOfQuestions; i++)
+            //{
+            //    quizList.Add(new FlashCard
+            //    {
+            //        //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
+            //        TheQuestion = "TODO:Calls a methodForQuestion",
+            //        CorrectChoice = "TODO:Calls methodForOneAnswer",
+            //        IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
+            //        IncorrectChoice2 = "same",
+            //        IncorrectChoice3 = "same",
+            //    });
+            //}
 
             //TODO:
             //After quizlist is filled.
@@ -47,40 +45,24 @@ namespace QuizMaker
 
         }
 
-        static List<Question> GetTestQuestions()
+        static List<FlashCard> GetTestQuestions()
         {
-            List<Question> quizList = new();
-            quizList.Add(new Question
+            List<FlashCard> quizList = new();
+            quizList.Add(new FlashCard
             {
-                //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
+                //Todo: UI method that gets called to ask for question and answers
                 TheQuestion = "TODO:Calls a methodForQuestion",
-                CorrectChoice = "TODO:Calls methodForOneAnswer",
-                IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
-                IncorrectChoice2 = "same",
-                IncorrectChoice3 = "same",
-                Response = "UI method that inserts the response here to compare later." +
-                    " (duplicates the choice here to compare later)"
+                Answers = new List<Answer> 
             });
-            quizList.Add(new Question
+            quizList.Add(new FlashCard
             {
-                //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
-                TheQuestion = "TODO:Calls a methodForQuestion",
-                CorrectChoice = "TODO:Calls methodForOneAnswer",
-                IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
-                IncorrectChoice2 = "same",
-                IncorrectChoice3 = "same",
-                Response = "UI method that inserts the response here to compare later." +
-                    " (duplicates the choice here to compare later)"
-            }); quizList.Add(new Question
+                //Todo: UI method that gets called to ask for question and answers
+                TheQuestion = "TODO:Calls a methodForQuestion"
+            }); quizList.Add(new FlashCard
             {
-                //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
-                TheQuestion = "TODO:Calls a methodForQuestion",
-                CorrectChoice = "TODO:Calls methodForOneAnswer",
-                IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
-                IncorrectChoice2 = "same",
-                IncorrectChoice3 = "same",
-                Response = "UI method that inserts the response here to compare later." +
-                     " (duplicates the choice here to compare later)"
+                //Todo: UI method that gets called to ask for question and answers
+                TheQuestion = "TODO:Calls a methodForQuestion"
+
             });
             return quizList;
         }
