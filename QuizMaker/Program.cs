@@ -48,22 +48,15 @@ namespace QuizMaker
         static List<FlashCard> GetTestQuestions()
         {
             List<FlashCard> quizList = new();
-            quizList.Add(new FlashCard
-            {
-                //Todo: UI method that gets called to ask for question and answers
-                TheQuestion = "TODO:Calls a methodForQuestion",
-                Answers = new List<Answer> 
-            });
-            quizList.Add(new FlashCard
-            {
-                //Todo: UI method that gets called to ask for question and answers
-                TheQuestion = "TODO:Calls a methodForQuestion"
-            }); quizList.Add(new FlashCard
-            {
-                //Todo: UI method that gets called to ask for question and answers
-                TheQuestion = "TODO:Calls a methodForQuestion"
 
-            });
+            FlashCard card = new FlashCard();
+
+            card.TheQuestion = "What's your name?";
+
+            card.Answers.Add(new Answer { StoredAnswer = "John", IsCorrect = false });
+
+            quizList.Add(card);
+
             return quizList;
         }
 

@@ -8,9 +8,17 @@ namespace QuizMaker
 
         public string TheQuestion { get; set; }
 
-        public List<Answer> Answers;
+        //public List<Answer> Answers { get; set; } = new List<Answer>();
 
-        public Answer Response;
+        private List<Answer> Answers = new List<Answer>();
+        public List<Answer> MyProperty
+        {
+            get { return Answers; }
+            set { Answers = value; }
+        }
+
+        public Answer Response { get; set; };
+
     }
 }
 
