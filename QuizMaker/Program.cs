@@ -10,22 +10,16 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             //Get from UI method. Ask how many questions they're planning on doing.
-            //int numberOfQuestions = 0;
+            //int numberOfQuestions = 2;
 
+            List<FlashCard> flashCards = new List<FlashCard>();
             List<FlashCard> quizList = GetTestQuestions();
 
             ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
             //for (int i = 0; i < numberOfQuestions; i++)
             //{
-            //    quizList.Add(new FlashCard
-            //    {
-            //        //Todo: UI method that gets called to ask for question answer and 3 incorrectChoices.
-            //        TheQuestion = "TODO:Calls a methodForQuestion",
-            //        CorrectChoice = "TODO:Calls methodForOneAnswer",
-            //        IncorrectChoice1 = "Todo:Calls methodForIncorrectChoice",
-            //        IncorrectChoice2 = "same",
-            //        IncorrectChoice3 = "same",
-            //    });
+            //    flashCards.AddRange(new );
+
             //}
 
             //TODO:
@@ -34,14 +28,14 @@ namespace QuizMaker
             // figure out if the response is the answer or not. 
             // Keep track of score.
 
-            Random rng = new Random();
-            var randomOrderQuizList = quizList.OrderBy(i => rng.Next());
+            //Random rng = new Random();
+            //var randomOrderQuizList = quizList.OrderBy(i => rng.Next());
 
-            foreach (var i in randomOrderQuizList)
-            {
-                // UI method to display question and also random choices
-                // Get response, insert response into object.
-            }
+            //foreach (var i in randomOrderQuizList)
+            //{
+            //    // UI method to display question and also random choices
+            //    // Get response, insert response into object.
+            //}
 
         }
 
@@ -52,14 +46,15 @@ namespace QuizMaker
             FlashCard card = new FlashCard();
 
             card.TheQuestion = UI.GetQuestion();
+
             while (UI.IsAddingAnswers())
             {
 
                 card.Answers.Add(new Answer { StoredAnswer = UI.GetAnswer(), IsCorrect = UI.IsACorrectAnswer() });
+                quizList.Add(card);
 
             }
 
-            quizList.Add(card);
 
             return quizList;
         }
