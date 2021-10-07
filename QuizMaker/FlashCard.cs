@@ -10,14 +10,14 @@ namespace QuizMaker
 
         //public List<Answer> Answers { get; set; } = new List<Answer>();
 
-        private List<Answer> Answers = new List<Answer>();
-        public List<Answer> MyProperty
+        private List<Answer> _answers = new List<Answer>();
+        public List<Answer> Answers
         {
-            get { return Answers; }
-            set { Answers = value; }
+            get { return _answers; }
+            set { _answers = value; }
         }
 
-        public Answer Response { get; set; };
+        public Answer Response { get; set; }
 
     }
 }
