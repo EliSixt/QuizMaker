@@ -51,9 +51,13 @@ namespace QuizMaker
 
             FlashCard card = new FlashCard();
 
-            card.TheQuestion = "What's your name?";
+            card.TheQuestion = UI.GetQuestion();
+            while (UI.IsAddingAnswers())
+            {
 
-            card.Answers.Add(new Answer { StoredAnswer = "John", IsCorrect = false });
+                card.Answers.Add(new Answer { StoredAnswer = UI.GetAnswer(), IsCorrect = UI.IsACorrectAnswer() });
+
+            }
 
             quizList.Add(card);
 
