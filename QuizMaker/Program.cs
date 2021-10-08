@@ -10,17 +10,18 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             //Get from UI method. Ask how many questions they're planning on doing.
-            //int numberOfQuestions = 2;
+            int numberOfQuestions = 2;
 
-            List<FlashCard> flashCards = new List<FlashCard>();
-            List<FlashCard> quizList = GetTestQuestions();
 
             ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
-            //for (int i = 0; i < numberOfQuestions; i++)
-            //{
-            //    flashCards.AddRange(new );
+            List<FlashCard> flashCards = new List<FlashCard>();
 
-            //}
+            for (int i = 0; i < numberOfQuestions; i++)
+            {
+                List<FlashCard> quizList = GetTestQuestions();
+                flashCards.AddRange(quizList);
+
+            }
 
             //TODO:
             //After quizlist is filled.
