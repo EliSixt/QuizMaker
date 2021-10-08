@@ -20,7 +20,7 @@ namespace QuizMaker
         {
             Console.WriteLine("Is that a correct answer? yes/no");
             string isCorrect = Console.ReadLine();
-            if (isCorrect == "Yes" || isCorrect == "yes" || isCorrect == "YES")
+            if (isCorrect.ToLower() == "yes")
             {
                 return true;
             }
@@ -30,7 +30,7 @@ namespace QuizMaker
         {
             Console.WriteLine("Add an answer? yes/no");
             string response = Console.ReadLine();
-            if (response == "Yes" || response == "yes" || response == "YES")
+            if (response.ToLower() == "yes")
             {
                 return true;
             }

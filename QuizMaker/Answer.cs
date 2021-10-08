@@ -8,7 +8,7 @@ namespace QuizMaker
 {
     public class Answer
     {
-       public bool IsCorrect;
-       public string StoredAnswer;
+        public bool IsCorrect;
+        public string StoredAnswer;
     }
 }
