@@ -40,7 +40,13 @@ namespace QuizMaker
             }
 
         }
-
+        /// <summary>
+        /// Creates a new FlashCard Card object and a List<FlashCard>. 
+        /// Inserts the user's input 'Question' into the Card, inserts the user's input 'Answer choices' into the same Card,
+        /// then adds the filled Card to the List<FlashCard>
+        /// along with any additional 'Answer choices' to the Card.
+        /// </summary>
+        /// <returns>A user filled List<FlashCard> Object.</returns>
         static List<FlashCard> GetTestQuestions()
         {
             List<FlashCard> quizList = new();
@@ -60,6 +66,11 @@ namespace QuizMaker
 
             return quizList;
         }
+        /// <summary>
+        /// Recieves a FlashCard object list and randomizes the order in that list. 
+        /// </summary>
+        /// <param name="orderedList">List<FlashCard> A list to shuffle.</param>
+        /// <returns>Shuffled list.</returns>
         static List<FlashCard> ListRandomizer(List<FlashCard> orderedList)
         {
             Random rng = new Random();
