@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Xml.Serialization;
 
 
 namespace QuizMaker
@@ -22,16 +24,20 @@ namespace QuizMaker
 
             }
 
-            //TODO:
-            //After quizlist is filled.
-            // Ask each question (UI methods) in quizlist at random. Get response,  
-            // figure out if the response is the answer or not. 
-            // Keep track of score.
+            //XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<FlashCard>));
+            //using (TextWriter tx = new StreamWriter(@"C:\Users\"));
 
-            //Random rng = new Random();
-            //var randomOrderQuizList = flashCards.OrderBy(i => rng.Next());
 
-            List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
+                //TODO:
+                //After quizlist is filled.
+                // Ask each question (UI methods) in quizlist at random. Get response,  
+                // figure out if the response is the answer or not. 
+                // Keep track of score.
+
+                //Random rng = new Random();
+                //var randomOrderQuizList = flashCards.OrderBy(i => rng.Next());
+
+                List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
 
             foreach (var card in shuffledFlashCards)
             {
@@ -51,7 +57,7 @@ namespace QuizMaker
         {
             List<FlashCard> quizList = new();
 
-            FlashCard card = new FlashCard();
+            FlashCard card = new();
 
             card.TheQuestion = UI.GetQuestion();
 

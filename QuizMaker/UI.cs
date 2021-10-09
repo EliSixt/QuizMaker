@@ -40,9 +40,9 @@ namespace QuizMaker
             return false;
         }
         /// <summary>
-        /// Asks the user if they want
+        /// Asks the user if they want to add another answer.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Boolean</returns>
         public static bool IsAddingAnswers()
         {
             Console.WriteLine("Add an answer? yes/no");
