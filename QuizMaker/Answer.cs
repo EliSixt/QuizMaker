@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuizMaker
 {
+    [Serializable]
     public class Answer
     {
         public bool IsCorrect;

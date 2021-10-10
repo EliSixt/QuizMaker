@@ -14,18 +14,22 @@ namespace QuizMaker
             //Get from UI method. Ask how many questions they're planning on doing.
             int numberOfQuestions = 1;
 
+            
 
             ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
             List<FlashCard> flashCards = new List<FlashCard>();
             for (int i = 0; i < numberOfQuestions; i++)
             {
-                List<FlashCard> quizList = GetTestQuestions();
+                List<FlashCard> quizList = GetTestQuestions(); //methods naming?! and should jsut return one card
                 flashCards.AddRange(quizList);
 
             }
 
-            //XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<FlashCard>));
-            //using (TextWriter tx = new StreamWriter(@"C:\Users\"));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<FlashCard>));
+            using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
+            {
+                xmlSerializer.Serialize(tx, flashCards);              
+            }
 
 
                 //TODO:
@@ -81,9 +85,13 @@ namespace QuizMaker
         {
             Random rng = new Random();
             List<FlashCard> randomOrderList = new List<FlashCard>();
-            randomOrderList = (List<FlashCard>)orderedList.OrderBy(i => rng.Next());
+            randomOrderList = orderedList.OrderBy(i => rng.Next()).ToList();
+
+
             return randomOrderList;
         }
+
+   
 
     }
 }

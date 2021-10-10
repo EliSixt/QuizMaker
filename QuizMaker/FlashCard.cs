@@ -4,8 +4,8 @@ using System.Runtime.Serialization;
 
 namespace QuizMaker
 {
-    [Serializable()]
-    public class FlashCard /*: ISerializable*/
+    [Serializable]
+    public class FlashCard
     {
         public string TheQuestion { get; set; }
 
@@ -17,6 +17,7 @@ namespace QuizMaker
         }
 
         public Answer Response { get; set; }
+
 
         //public void GetObjectData(SerializationInfo info, StreamingContext context)
         //{
