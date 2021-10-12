@@ -84,11 +84,8 @@ namespace QuizMaker
         static List<FlashCard> ListRandomizer(List<FlashCard> orderedList)
         {
             Random rng = new Random();
-            List<FlashCard> randomOrderList = new List<FlashCard>();
-            randomOrderList = orderedList.OrderBy(i => rng.Next()).ToList();
 
-
-            return randomOrderList;
+            return orderedList.OrderBy(i => rng.Next()).ToList();
         }
 
    
