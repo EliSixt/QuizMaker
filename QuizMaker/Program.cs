@@ -20,12 +20,12 @@ namespace QuizMaker
             List<FlashCard> flashCards = new List<FlashCard>();
             for (int i = 0; i < numberOfQuestions; i++)
             {
-                List<FlashCard> quizList = GetTestQuestions(); //methods naming?! and should jsut return one card
-                flashCards.AddRange(quizList);
+                FlashCard quizList = GetTestQuestions(); //methods naming?! and should jsut return one card
+                flashCards.Add(quizList);
 
             }
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<FlashCard>));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(FlashCard));
             using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
             {
                 xmlSerializer.Serialize(tx, flashCards);              
@@ -57,10 +57,8 @@ namespace QuizMaker
         /// along with any additional 'Answer choices' to the Card.
         /// </summary>
         /// <returns>A user filled List<FlashCard> Object.</returns>
-        static List<FlashCard> GetTestQuestions()
+        static FlashCard GetTestQuestions()
         {
-            List<FlashCard> quizList = new();
-
             FlashCard card = new();
 
             card.TheQuestion = UI.GetQuestion();
@@ -69,12 +67,10 @@ namespace QuizMaker
             {
 
                 card.Answers.Add(new Answer { StoredAnswer = UI.GetAnswer(), IsCorrect = UI.IsACorrectAnswer() });
-                quizList.Add(card);
-
             }
 
 
-            return quizList;
+            return card;
         }
         /// <summary>
         /// Recieves a FlashCard object list and randomizes the order in that list. 
