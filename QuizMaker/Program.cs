@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Xml.Serialization;
-
+using System.Xml;
 
 namespace QuizMaker
 {
@@ -82,6 +82,20 @@ namespace QuizMaker
             Random rng = new Random();
 
             return orderedList.OrderBy(i => rng.Next()).ToList();
+        }
+        /// <summary>
+        /// Method that serializes a list<Object>.
+        /// </summary>
+        /// <param name="type">The type of the list.</param>
+        /// <param name="ts">The transport stream.</param>
+        public static void XmlWriter(Type type, List<Type> ts )
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Type));
+            using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
+            {
+                xmlSerializer.Serialize(tx, ts);
+            }
+            
         }
         /// <summary>
         /// Generic method that deserializes a list<object>.
