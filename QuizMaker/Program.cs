@@ -13,35 +13,45 @@ namespace QuizMaker
         {
             //Get from UI method. Ask how many questions they're planning on doing.
             int numberOfQuestions = 1;
+            List<FlashCard> flashCards = new();
 
-            
 
-            ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
-            List<FlashCard> flashCards = new List<FlashCard>();
-            for (int i = 0; i < numberOfQuestions; i++)
+
+            if (File.Exists(@"C:\TMP\text.xml"))
             {
-                FlashCard quizList = GetTestQuestions(); //methods naming?! and should jsut return one card
-                flashCards.Add(quizList);
+                //Both are lists so they should work coherently.
+                flashCards = XmlReader<FlashCard>();
+            }
+            else
+            {
 
+                ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
+                for (int i = 0; i < numberOfQuestions; i++)
+                {
+                    FlashCard card = ProduceNewCard(); //methods naming?! and should jsut return one card
+                    flashCards.Add(card);
+
+                }
+
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(FlashCard));
+                using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
+                {
+                    xmlSerializer.Serialize(tx, flashCards);
+                }
+                //trying to use the XmlWriter method to serialize instead.
+                //XmlWriter(FlashCard, List<FlashCard>flashCards);
             }
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(FlashCard));
-            using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
-            {
-                xmlSerializer.Serialize(tx, flashCards);              
-            }
+            //TODO:
+            //After quizlist is filled.
+            // Ask each question (UI methods) in quizlist at random. Get response,  
+            // figure out if the response is the answer or not. 
+            // Keep track of score.
 
+            //Random rng = new Random();
+            //var randomOrderQuizList = flashCards.OrderBy(i => rng.Next());
 
-                //TODO:
-                //After quizlist is filled.
-                // Ask each question (UI methods) in quizlist at random. Get response,  
-                // figure out if the response is the answer or not. 
-                // Keep track of score.
-
-                //Random rng = new Random();
-                //var randomOrderQuizList = flashCards.OrderBy(i => rng.Next());
-
-                List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
+            List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
 
             foreach (var card in shuffledFlashCards)
             {
@@ -57,7 +67,7 @@ namespace QuizMaker
         /// along with any additional 'Answer choices' to the Card.
         /// </summary>
         /// <returns>A user filled List<FlashCard> Object.</returns>
-        static FlashCard GetTestQuestions()
+        static FlashCard ProduceNewCard()
         {
             FlashCard card = new();
 
@@ -88,14 +98,14 @@ namespace QuizMaker
         /// </summary>
         /// <param name="type">The type of the list.</param>
         /// <param name="ts">The transport stream.</param>
-        public static void XmlWriter(Type type, List<Type> ts )
+        public static void XmlWriter(Type type, List<Type> ts)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(Type));
             using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
             {
                 xmlSerializer.Serialize(tx, ts);
             }
-            
+
         }
         /// <summary>
         /// Generic method that deserializes a list<object>.
