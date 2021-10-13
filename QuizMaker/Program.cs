@@ -83,8 +83,18 @@ namespace QuizMaker
 
             return orderedList.OrderBy(i => rng.Next()).ToList();
         }
-
-   
-
+        /// <summary>
+        /// Generic method that deserializes a list<object>.
+        /// </summary>
+        /// <typeparam name="T">The type of object of the list.</typeparam>
+        /// <returns>A deserialized list object.</returns>
+        public static List<T> XmlReader<T>()
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            using (TextReader tx = new StreamReader(@"C:\TMP\text.xml"))
+            {
+                return (List<T>)xmlSerializer.Deserialize(tx);
+            }
+        }
     }
 }
