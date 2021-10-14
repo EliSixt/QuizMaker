@@ -14,13 +14,13 @@ namespace QuizMaker
             //Get from UI method. Ask how many questions they're planning on doing.
             int numberOfQuestions = 1;
             List<FlashCard> flashCards = new();
+            string filePath = @"C:\TMP\text.xml";
 
 
-
-            if (File.Exists(@"C:\TMP\text.xml"))
+            if (File.Exists(filePath))
             {
                 //Both are lists so they should work coherently.
-                flashCards = XmlReader<FlashCard>();
+                flashCards = XmlReader<FlashCard>(filePath);
             }
             else
             {
@@ -33,13 +33,14 @@ namespace QuizMaker
 
                 }
 
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(FlashCard));
-                using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
-                {
-                    xmlSerializer.Serialize(tx, flashCards);
-                }
+                //XmlSerializer xmlSerializer = new XmlSerializer(typeof(FlashCard));
+                //using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
+                //{
+                //    xmlSerializer.Serialize(tx, flashCards);
+                //}
                 //trying to use the XmlWriter method to serialize instead.
-                //XmlWriter(FlashCard, List<FlashCard>flashCards);
+
+                XmlWriter(flashCards, filePath);
             }
 
             //TODO:
@@ -96,26 +97,27 @@ namespace QuizMaker
         /// <summary>
         /// Method that serializes a list<Object>.
         /// </summary>
-        /// <param name="type">The type of the list.</param>
-        /// <param name="ts">The transport stream.</param>
-        public static void XmlWriter(Type type, List<Type> ts)
+        /// <paramref name="aFilePath">The path of the stored xml file.</paramref>
+        /// <param name="listToStore">The list to serialize.</param>
+        public static void XmlWriter<T>(List<T> listToStore, string aFilePath)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Type));
-            using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
+            using (TextWriter tx = new StreamWriter(aFilePath))
             {
-                xmlSerializer.Serialize(tx, ts);
+                xmlSerializer.Serialize(tx, listToStore);
             }
 
         }
         /// <summary>
         /// Generic method that deserializes a list<object>.
         /// </summary>
+        /// <paramref name="aFilePath">The path of the stored xml file.</paramref>
         /// <typeparam name="T">The type of object of the list.</typeparam>
         /// <returns>A deserialized list object.</returns>
-        public static List<T> XmlReader<T>()
+        public static List<T> XmlReader<T>(string aFilePath)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            using (TextReader tx = new StreamReader(@"C:\TMP\text.xml"))
+            using (TextReader tx = new StreamReader(aFilePath))
             {
                 return (List<T>)xmlSerializer.Deserialize(tx);
             }
