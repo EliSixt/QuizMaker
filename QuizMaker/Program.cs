@@ -17,7 +17,7 @@ namespace QuizMaker
             string filePath = @"C:\TMP\text.xml";
 
 
-            if (File.Exists(filePath))
+            if (File.Exists(filePath) && UI.LoadSavedQuestions())
             {
                 //Both are lists so they should work coherently.
                 flashCards = XmlReader<FlashCard>(filePath);

@@ -53,5 +53,19 @@ namespace QuizMaker
             }
             return false;
         }
+        /// <summary>
+        /// Asks the user if they want to create a new set of flashcards.
+        /// </summary>
+        /// <returns>Boolean</returns>
+        public static bool LoadSavedQuestions()
+        {
+            Console.WriteLine("Do you want to create a new set of flashcards? yes/no");
+            string response = Console.ReadLine();
+            if (response.ToLower() == "yes")
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
