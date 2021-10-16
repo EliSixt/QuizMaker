@@ -12,7 +12,7 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             //Get from UI method. Ask how many questions they're planning on doing.
-            int numberOfQuestions = 1;
+            int numberOfQuestions = 3;
             List<FlashCard> flashCards = new();
             string filePath = @"C:\TMP\text.xml";
 
@@ -20,7 +20,7 @@ namespace QuizMaker
             if (File.Exists(filePath) && UI.LoadSavedQuestions())
             {
                 //Both are lists so they should work coherently.
-                flashCards = XmlReader<FlashCard>(filePath);
+                flashCards = XmlReader<List<FlashCard>>(filePath);
             }
             else
             {
@@ -114,12 +114,12 @@ namespace QuizMaker
         /// <paramref name="aFilePath">The path of the stored xml file.</paramref>
         /// <typeparam name="T">The type of object of the list.</typeparam>
         /// <returns>A deserialized list object.</returns>
-        public static List<T> XmlReader<T>(string aFilePath)
+        public static T XmlReader<T>(string aFilePath)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             using (TextReader tx = new StreamReader(aFilePath))
             {
-                return (List<T>)xmlSerializer.Deserialize(tx);
+                return (T)xmlSerializer.Deserialize(tx);
             }
         }
     }
