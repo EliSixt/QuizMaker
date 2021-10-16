@@ -16,7 +16,10 @@ namespace QuizMaker
             List<FlashCard> flashCards = new();
             string filePath = @"C:\TMP\text.xml";
 
-
+            //if the file exists and the user doesnt want to create a new set of flashcards
+            //it'll read the stored file.
+            //else it'll create a new set of flashcards (from the user inputs) and create 
+            //a new xml textfile.
             if (File.Exists(filePath) && UI.LoadSavedQuestions())
             {
                 //Both are lists so they should work coherently.
@@ -24,22 +27,14 @@ namespace QuizMaker
             }
             else
             {
-
                 ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
                 for (int i = 0; i < numberOfQuestions; i++)
                 {
                     FlashCard card = ProduceNewCard(); //methods naming?! and should jsut return one card
                     flashCards.Add(card);
-
                 }
 
-                //XmlSerializer xmlSerializer = new XmlSerializer(typeof(FlashCard));
-                //using (TextWriter tx = new StreamWriter(@"C:\TMP\text.xml"))
-                //{
-                //    xmlSerializer.Serialize(tx, flashCards);
-                //}
-                //trying to use the XmlWriter method to serialize instead.
-
+                //using the XmlWriter method to serialize.
                 XmlWriter(flashCards, filePath);
             }
 
@@ -48,16 +43,16 @@ namespace QuizMaker
             // Ask each question (UI methods) in quizlist at random. Get response,  
             // figure out if the response is the answer or not. 
             // Keep track of score.
-
+            
             //Random rng = new Random();
             //var randomOrderQuizList = flashCards.OrderBy(i => rng.Next());
-
             List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
 
             foreach (var card in shuffledFlashCards)
             {
                 // UI method to display question and also random choices
                 // Get response, insert response into object.
+
             }
 
         }
@@ -88,7 +83,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="orderedList">List<FlashCard> A list to shuffle.</param>
         /// <returns>Shuffled list.</returns>
-        static List<FlashCard> ListRandomizer(List<FlashCard> orderedList)
+        static List<T> ListRandomizer<T>(List<T> orderedList)
         {
             Random rng = new Random();
 

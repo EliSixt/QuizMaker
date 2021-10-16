@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace QuizMaker
@@ -12,27 +13,23 @@ namespace QuizMaker
         private List<Answer> _answers = new();
         public List<Answer> Answers
         {
-            get { return _answers; }
+            get { return ListRandomizer(_answers); }
             set { _answers = value; }
         }
 
         public Answer Response { get; set; }
 
+        /// <summary>
+        /// Recieves a FlashCard object list and randomizes the order in that list. 
+        /// </summary>
+        /// <param name="orderedList">List<FlashCard> A list to shuffle.</param>
+        /// <returns>Shuffled list.</returns>
+        static List<T> ListRandomizer<T>(List<T> orderedList)
+        {
+            Random rng = new Random();
 
-        //public void GetObjectData(SerializationInfo info, StreamingContext context)
-        //{
-        //    info.AddValue("Question", TheQuestion);
-        //    info.AddValue("Answers", Answers);
-        //    info.AddValue("Response", Response);
-        //}
-
-        //public FlashCard(SerializationInfo info, StreamingContext context)
-        //{
-        //    TheQuestion = (string)info.GetValue("Question", typeof(string));
-        //    Answers = (List<Answer>)info.GetValue("Answers", typeof(List<Answer>));
-        //    Response = (Answer)info.GetValue("Response", typeof(Answer));
-
-        //}
+            return orderedList.OrderBy(i => rng.Next()).ToList();
+        }
     }
 }
 
