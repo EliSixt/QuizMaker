@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace QuizMaker
 {
@@ -67,5 +68,12 @@ namespace QuizMaker
             }
             return true;
         }
+        //public static void DisplayFlashCard(FlashCard card)
+        //{
+        //    Console.WriteLine(card.TheQuestion);
+        //    Random rng = new Random();
+            
+        //    Answer newList = card.Answers.OrderBy(i => rng.Next()).ToList();
+        //}
     }
 }
