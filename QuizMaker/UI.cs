@@ -11,7 +11,7 @@ namespace QuizMaker
         /// <returns>String Question from the Console.</returns>
         public static string GetQuestion()
         {
-            Console.WriteLine("Whats the question?");
+            Console.WriteLine("Enter the question.");
             string question = Console.ReadLine();
             return question;
         }
@@ -21,7 +21,7 @@ namespace QuizMaker
         /// <returns>string Answer from the Console.</returns>
         public static string GetAnswer()
         {
-            Console.WriteLine("Add an answer to that question");
+            Console.WriteLine("Enter the answer choice.");
             string answer = Console.ReadLine();
             return answer;
         }
@@ -32,9 +32,9 @@ namespace QuizMaker
         /// <returns>Bool of the player's choice, if the answer is correct.</returns>
         public static bool IsACorrectAnswer()
         {
-            Console.WriteLine("Is that a correct answer? yes/no");
+            Console.WriteLine("Is that a correct answer? y/n");
             string isCorrect = Console.ReadLine();
-            if (isCorrect.ToLower() == "yes")
+            if (isCorrect.ToLower() == "y")
             {
                 return true;
             }
@@ -46,7 +46,7 @@ namespace QuizMaker
         /// <returns>Boolean</returns>
         public static bool IsAddingAnswers()
         {
-            Console.WriteLine("Add an answer? yes/no");
+            Console.WriteLine("Do you want to add an answer choice? y/n");
             string response = Console.ReadLine();
             if (response.ToLower() == "yes")
             {
@@ -60,9 +60,10 @@ namespace QuizMaker
         /// <returns>Boolean</returns>
         public static bool LoadSavedQuestions()
         {
-            Console.WriteLine("Do you want to create a new set of flashcards? yes/no");
+            Console.WriteLine("Do you want to create a new set of flashcards? y/n");
+            Console.WriteLine("Note: Stored flashcards will load.");
             string response = Console.ReadLine();
-            if (response.ToLower() == "yes")
+            if (response.ToLower() == "y")
             {
                 return true;
             }
@@ -79,40 +80,40 @@ namespace QuizMaker
         }
         //public static bool GetUserResponse()
         //{
-            //    while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y)
-            //    {
-            //        Console.WriteLine("Please press Y or N.");
-            //    }
-            //    if (Console.ReadKey().Key == ConsoleKey.Y)
-            //    {
-            //        return false;
-            //    }
-            //    else
-            //    {
-            //        return true;
-            //    }
+        //    while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y)
+        //    {
+        //        Console.WriteLine("Please press Y or N.");
+        //    }
+        //    if (Console.ReadKey().Key == ConsoleKey.Y)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
 
 
-            //do
-            //{
-            //    if (Console.ReadKey().Key == ConsoleKey.Y)
-            //    {
-            //        return true;
-            //    }
-            //    if (Console.ReadKey().Key == ConsoleKey.N)
-            //    {
-            //        return false;
-            //    }
-            //    Console.WriteLine("Please press Y or N.");
-            //} while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y);
+        //do
+        //{
+        //    if (Console.ReadKey().Key == ConsoleKey.Y)
+        //    {
+        //        return true;
+        //    }
+        //    if (Console.ReadKey().Key == ConsoleKey.N)
+        //    {
+        //        return false;
+        //    }
+        //    Console.WriteLine("Please press Y or N.");
+        //} while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y);
 
 
-            //string reponse = Console.ReadLine();
-            //if (reponse.Equals("y", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    return true;
-            //}
-            //return false;
+        //string reponse = Console.ReadLine();
+        //if (reponse.Equals("y", StringComparison.OrdinalIgnoreCase))
+        //{
+        //    return true;
+        //}
+        //return false;
         //}
     }
 }
