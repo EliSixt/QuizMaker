@@ -34,11 +34,7 @@ namespace QuizMaker
         {
             Console.WriteLine("Is that a correct answer? y/n");
             string isCorrect = Console.ReadLine();
-            if (isCorrect.ToLower() == "y")
-            {
-                return true;
-            }
-            return false;
+            return GetUserResponse();
         }
         /// <summary>
         /// Asks the user if they want to add another answer.
@@ -47,12 +43,8 @@ namespace QuizMaker
         public static bool IsAddingAnswers()
         {
             Console.WriteLine("Do you want to add an answer choice? y/n");
-            string response = Console.ReadLine();
-            if (response.ToLower() == "yes")
-            {
-                return true;
-            }
-            return false;
+            bool response = GetUserResponse();
+            return response;
         }
         /// <summary>
         /// Asks the user if they want to create a new set of flashcards.
@@ -62,12 +54,7 @@ namespace QuizMaker
         {
             Console.WriteLine("Do you want to create a new set of flashcards? y/n");
             Console.WriteLine("Note: Stored flashcards will load.");
-            string response = Console.ReadLine();
-            if (response.ToLower() == "y")
-            {
-                return true;
-            }
-            return false;
+            return GetUserResponse();
         }
         public static void DisplayFlashCard(FlashCard card)
         {
@@ -78,42 +65,63 @@ namespace QuizMaker
                 Console.WriteLine(item);
             }
         }
-        //public static bool GetUserResponse()
-        //{
-        //    while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y)
-        //    {
-        //        Console.WriteLine("Please press Y or N.");
-        //    }
-        //    if (Console.ReadKey().Key == ConsoleKey.Y)
-        //    {
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        return true;
-        //    }
+        /// <summary>
+        /// Gets the Y/N response from the console and returns it as a boolean.
+        /// </summary>
+        /// <returns>Boolean.</returns>
+        public static bool GetUserResponse()
+        {
+            do
+            {
+                string input = Console.ReadLine();
+                if (input.Equals("y", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return true;
+                }
+                if (input.Equals("n", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid input.");
+                }
+            } while (true);
+
+            //    while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y)
+            //    {
+            //        Console.WriteLine("Please press Y or N.");
+            //    }
+            //    if (Console.ReadKey().Key == ConsoleKey.Y)
+            //    {
+            //        return false;
+            //    }
+            //    else
+            //    {
+            //        return true;
+            //    }
 
 
-        //do
-        //{
-        //    if (Console.ReadKey().Key == ConsoleKey.Y)
-        //    {
-        //        return true;
-        //    }
-        //    if (Console.ReadKey().Key == ConsoleKey.N)
-        //    {
-        //        return false;
-        //    }
-        //    Console.WriteLine("Please press Y or N.");
-        //} while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y);
+            //do
+            //{
+            //    if (Console.ReadKey().Key == ConsoleKey.Y)
+            //    {
+            //        return true;
+            //    }
+            //    if (Console.ReadKey().Key == ConsoleKey.N)
+            //    {
+            //        return false;
+            //    }
+            //    Console.WriteLine("Please press Y or N.");
+            //} while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y);
 
 
-        //string reponse = Console.ReadLine();
-        //if (reponse.Equals("y", StringComparison.OrdinalIgnoreCase))
-        //{
-        //    return true;
-        //}
-        //return false;
-        //}
+            //string reponse = Console.ReadLine();
+            //if (reponse.Equals("y", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    return true;
+            //}
+            //return false;
+        }
     }
 }

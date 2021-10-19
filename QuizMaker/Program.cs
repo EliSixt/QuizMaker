@@ -20,7 +20,7 @@ namespace QuizMaker
             //it'll read the stored file.
             //else it'll create a new set of flashcards (from the user inputs) and create 
             //a new xml textfile.
-            if (File.Exists(filePath) && UI.LoadSavedQuestions())
+            if (File.Exists(filePath) && !UI.LoadSavedQuestions())
             {
                 //Both are lists so they should work coherently.
                 flashCards = XmlReader<List<FlashCard>>(filePath);
