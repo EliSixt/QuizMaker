@@ -64,9 +64,9 @@ namespace QuizMaker
             string response = Console.ReadLine();
             if (response.ToLower() == "yes")
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
         public static void DisplayFlashCard(FlashCard card)
         {
@@ -79,25 +79,40 @@ namespace QuizMaker
         }
         //public static bool GetUserResponse()
         //{
-        //    //ConsoleKey response = Console.ReadKey(false).Key;
-        //    //while (response != ConsoleKey.N && response != ConsoleKey.Y)
-        //    //{
-        //    //    response = Console.ReadKey(false).Key;
-        //    //    Console.WriteLine("Please press Y or N.");
-        //    //}
-        //    //if (response == ConsoleKey.Y)
-        //    //{
-        //    //    return true;
-        //    //}
+            //    while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y)
+            //    {
+            //        Console.WriteLine("Please press Y or N.");
+            //    }
+            //    if (Console.ReadKey().Key == ConsoleKey.Y)
+            //    {
+            //        return false;
+            //    }
+            //    else
+            //    {
+            //        return true;
+            //    }
 
-        //    //return false;
 
-        //    string reponse = Console.ReadLine();
-        //    if (reponse.Equals("y", StringComparison.OrdinalIgnoreCase))
-        //    {
-        //        return true;
-        //    }
-        //    return false;
+            //do
+            //{
+            //    if (Console.ReadKey().Key == ConsoleKey.Y)
+            //    {
+            //        return true;
+            //    }
+            //    if (Console.ReadKey().Key == ConsoleKey.N)
+            //    {
+            //        return false;
+            //    }
+            //    Console.WriteLine("Please press Y or N.");
+            //} while (Console.ReadKey().Key != ConsoleKey.N && Console.ReadKey().Key != ConsoleKey.Y);
+
+
+            //string reponse = Console.ReadLine();
+            //if (reponse.Equals("y", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    return true;
+            //}
+            //return false;
         //}
     }
 }
