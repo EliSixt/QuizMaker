@@ -52,9 +52,10 @@ namespace QuizMaker
             {
                 // UI method to display question and also random choices
                 // Get response, insert response into object.
-                //UI.DisplayFlashCard(card);
+                UI.DisplayFlashCard(card);
+                //card.Response = UI.selectedAnswer;
             }
-
+   
         }
         /// <summary>
         /// Creates a new FlashCard Card object and a List<FlashCard>. 

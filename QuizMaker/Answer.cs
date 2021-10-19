@@ -9,7 +9,12 @@ namespace QuizMaker
     [Serializable]
     public class Answer
     {
-        public bool IsCorrect;
-        public string StoredAnswer;
+        public bool IsCorrect { get; set; }
+        public string StoredAnswer { get; set; }
+
+        public override string ToString()
+        {
+            return $"{StoredAnswer} - {IsCorrect}";
+        }
     }
 }

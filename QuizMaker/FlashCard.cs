@@ -13,8 +13,13 @@ namespace QuizMaker
         private List<Answer> _answers = new();
         public List<Answer> Answers
         {
-            get { return ListRandomizer(_answers); }
+            get { return _answers; }
             set { _answers = value; }
+        }
+
+        public List<Answer> RandomizedAnswers
+        {
+            get { return ListRandomizer(_answers); }
         }
 
         public Answer Response { get; set; }
@@ -24,7 +29,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="orderedList">List<FlashCard> A list to shuffle.</param>
         /// <returns>Shuffled list.</returns>
-        static List<T> ListRandomizer<T>(List<T> orderedList)
+        private List<T> ListRandomizer<T>(List<T> orderedList)
         {
             Random rng = new Random();
 

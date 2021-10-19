@@ -68,12 +68,36 @@ namespace QuizMaker
             }
             return true;
         }
-        //public static void DisplayFlashCard(FlashCard card)
+        public static void DisplayFlashCard(FlashCard card)
+        {
+            Console.WriteLine(card.TheQuestion);
+
+            foreach (Answer item in card.RandomizedAnswers)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        //public static bool GetUserResponse()
         //{
-        //    Console.WriteLine(card.TheQuestion);
-        //    Random rng = new Random();
-            
-        //    Answer newList = card.Answers.OrderBy(i => rng.Next()).ToList();
+        //    //ConsoleKey response = Console.ReadKey(false).Key;
+        //    //while (response != ConsoleKey.N && response != ConsoleKey.Y)
+        //    //{
+        //    //    response = Console.ReadKey(false).Key;
+        //    //    Console.WriteLine("Please press Y or N.");
+        //    //}
+        //    //if (response == ConsoleKey.Y)
+        //    //{
+        //    //    return true;
+        //    //}
+
+        //    //return false;
+
+        //    string reponse = Console.ReadLine();
+        //    if (reponse.Equals("y", StringComparison.OrdinalIgnoreCase))
+        //    {
+        //        return true;
+        //    }
+        //    return false;
         //}
     }
 }
