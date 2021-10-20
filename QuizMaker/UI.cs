@@ -33,7 +33,6 @@ namespace QuizMaker
         public static bool IsACorrectAnswer()
         {
             Console.WriteLine("Is that a correct answer? y/n");
-            string isCorrect = Console.ReadLine();
             return GetUserResponse();
         }
         /// <summary>
@@ -59,11 +58,16 @@ namespace QuizMaker
         public static void DisplayFlashCard(FlashCard card)
         {
             Console.WriteLine(card.TheQuestion);
-
-            foreach (Answer item in card.RandomizedAnswers)
+            Console.WriteLine("select all that apply:");
+            for (int i = 0; i < card.RandomizedAnswers.Count; i++)
             {
-                Console.WriteLine(item);
+                Console.WriteLine($"{i}. {card.RandomizedAnswers[i]}");
             }
+
+            //foreach (Answer item in card.RandomizedAnswers)
+            //{
+            //    Console.WriteLine(item);
+            //}
         }
         /// <summary>
         /// Gets the Y/N response from the console and returns it as a boolean.
