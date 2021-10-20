@@ -62,12 +62,14 @@ namespace QuizMaker
             for (int i = 0; i < card.RandomizedAnswers.Count; i++)
             {
                 Console.WriteLine($"{i}. {card.RandomizedAnswers[i]}");
+                //Maybe put in a method for referencing card.randomizedAnswers??? 
             }
 
             //foreach (Answer item in card.RandomizedAnswers)
             //{
             //    Console.WriteLine(item);
             //}
+
         }
         /// <summary>
         /// Gets the Y/N response from the console and returns it as a boolean.
