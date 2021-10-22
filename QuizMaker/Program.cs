@@ -58,11 +58,15 @@ namespace QuizMaker
                     randomAnswers.Add(item);
                 }
 
+                //Maps a set of 'keys' to a set of 'values'. In this case it'll be an int to card.randomizedAnswers[i].
+                Dictionary<int, Answer> keyValues = OpenWithNumberKey(randomAnswers);
+
                 // UI method to display question and also random choices
                 // Get response, insert response into object.
                 UI.DisplayFlashCard(card, randomAnswers);
+                
 
-                //card.Response = UI.selectedAnswer;
+
             }
 
         }
@@ -130,15 +134,21 @@ namespace QuizMaker
                 return (T)xmlSerializer.Deserialize(tx);
             }
         }
-        //public static Dictionary<int, Answer> OpenWithKey(List<Answer> answerList)
-        //{
-        //    Dictionary<int, Answer> keys = new Dictionary<int, Answer>();
+        /// <summary>
+        /// Maps a set of 'keys' to a set of 'values'. In this case it'll be an int to card.randomizedAnswers[i].
+        /// Uses keys as a guide/references for values. Helpful when the user enters a multiplechoice answer.
+        /// </summary>
+        /// <param name="answerList">The List<Answer> to be assigned temp keys to.</param>
+        /// <returns>A new list<Answer> but with all the values assigned a an int key. Starting from 1.</returns>
+        public static Dictionary<int, Answer> OpenWithNumberKey(List<Answer> answerList)
+        {
+            Dictionary<int, Answer> keys = new Dictionary<int, Answer>();
 
-        //    for (int i = 0; i < answerList.Count; i++)
-        //    {
-        //        keys.Add(i+1, answerList[i]);
-        //    }
-        //    return keys;
-        //}
+            for (int i = 0; i < answerList.Count; i++)
+            {
+                keys.Add(i + 1, answerList[i]);
+            }
+            return keys;
+        }
     }
 }
