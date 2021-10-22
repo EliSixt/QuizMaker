@@ -50,9 +50,18 @@ namespace QuizMaker
 
             foreach (var card in shuffledFlashCards)
             {
+                //to keep RandomizedAnswers from being randomized over and over, just create a new list and add those randomized answers
+                //so it can be used as a reference without the randomization being called.
+                List<Answer> randomAnswers = new List<Answer>();
+                foreach (Answer item in card.RandomizedAnswers)
+                {
+                    randomAnswers.Add(item);
+                }
+
                 // UI method to display question and also random choices
                 // Get response, insert response into object.
                 UI.DisplayFlashCard(card);
+                
                 //card.Response = UI.selectedAnswer;
             }
    
@@ -121,9 +130,15 @@ namespace QuizMaker
                 return (T)xmlSerializer.Deserialize(tx);
             }
         }
-        //public static List<Answer> SelectAnswer(List<Answer> referencedList)
+        //public static Dictionary<int, Answer> OpenWithKey(List<Answer> answerList)
         //{
+        //    Dictionary<int, Answer> keys = new Dictionary<int, Answer>();
 
+        //    for (int i = 0; i < answerList.Count; i++)
+        //    {
+        //        keys.Add(i+1, answerList[i]);
+        //    }
+        //    return keys;
         //}
     }
 }

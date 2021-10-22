@@ -61,7 +61,8 @@ namespace QuizMaker
             Console.WriteLine("select all that apply:");
             for (int i = 0; i < card.RandomizedAnswers.Count; i++)
             {
-                Console.WriteLine($"{i}. {card.RandomizedAnswers[i]}");
+                Console.WriteLine($"{i + 1}. {card.RandomizedAnswers[i]}");
+
                 //Maybe put in a method for referencing card.randomizedAnswers??? 
             }
 
