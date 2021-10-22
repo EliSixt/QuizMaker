@@ -43,7 +43,7 @@ namespace QuizMaker
             // Ask each question (UI methods) in quizlist at random. Get response,  
             // figure out if the response is the answer or not. 
             // Keep track of score.
-            
+
             //Random rng = new Random();
             //var randomOrderQuizList = flashCards.OrderBy(i => rng.Next());
             List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
@@ -60,11 +60,11 @@ namespace QuizMaker
 
                 // UI method to display question and also random choices
                 // Get response, insert response into object.
-                UI.DisplayFlashCard(card);
-                
+                UI.DisplayFlashCard(card, randomAnswers);
+
                 //card.Response = UI.selectedAnswer;
             }
-   
+
         }
 
 

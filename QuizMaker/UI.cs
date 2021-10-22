@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace QuizMaker
@@ -55,13 +56,13 @@ namespace QuizMaker
             Console.WriteLine("Note: Stored flashcards will load.");
             return GetUserResponse();
         }
-        public static void DisplayFlashCard(FlashCard card)
+        public static void DisplayFlashCard(FlashCard card, List<Answer> answerChoices)
         {
             Console.WriteLine(card.TheQuestion);
             Console.WriteLine("select all that apply:");
-            for (int i = 0; i < card.RandomizedAnswers.Count; i++)
+            for (int i = 0; i < answerChoices.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {card.RandomizedAnswers[i]}");
+                Console.WriteLine($"{i + 1}. {answerChoices[i]}");
 
                 //Maybe put in a method for referencing card.randomizedAnswers??? 
             }
