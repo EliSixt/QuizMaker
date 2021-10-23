@@ -12,7 +12,7 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             //Get from UI method. Ask how many questions they're planning on doing.
-            int numberOfQuestions = 3;
+            int numberOfQuestions = 1;
             List<FlashCard> flashCards = new();
             string filePath = @"C:\TMP\text.xml";
 
@@ -46,13 +46,13 @@ namespace QuizMaker
 
             //Random rng = new Random();
             //var randomOrderQuizList = flashCards.OrderBy(i => rng.Next());
-            List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards); // This accidentally stored a duplicate of answer inside RandomizedAnswers 
+            List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
 
             foreach (var card in shuffledFlashCards)
             {
                 //to keep RandomizedAnswers from being randomized over and over, just create a new list and add those randomized answers
                 //so it can be used as a reference without the randomization being called.
-                List<Answer> randomAnswers = new List<Answer>();
+                List<Answer> randomAnswers = new();
                 foreach (Answer item in card.RandomizedAnswers)
                 {
                     randomAnswers.Add(item);
@@ -66,7 +66,7 @@ namespace QuizMaker
 
                 // Get response, insert response into object.
                 int answerCount = card.RandomizedAnswers.Count;
-                card.Response = keyValues[UI.GetNumResponse(answerCount)];
+                card.Response.Add(keyValues[UI.GetNumResponse(answerCount)]);
 
             }
 
@@ -104,7 +104,6 @@ namespace QuizMaker
         static List<T> ListRandomizer<T>(List<T> orderedList)
         {
             Random rng = new Random();
-
             return orderedList.OrderBy(i => rng.Next()).ToList();
         }
         /// <summary>

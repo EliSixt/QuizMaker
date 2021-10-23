@@ -16,13 +16,13 @@ namespace QuizMaker
             get { return _answers; }
             set { _answers = value; }
         }
+        public List<Answer> Response { get; set; }
 
         public List<Answer> RandomizedAnswers
         {
             get { return ListRandomizer(_answers); }
         }
 
-        public Answer Response { get; set; }
 
         /// <summary>
         /// Recieves a FlashCard object list and randomizes the order in that list. 
