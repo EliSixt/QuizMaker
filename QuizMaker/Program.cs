@@ -46,7 +46,7 @@ namespace QuizMaker
 
             //Random rng = new Random();
             //var randomOrderQuizList = flashCards.OrderBy(i => rng.Next());
-            List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
+            List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards); // This accidentally stored a duplicate of answer inside RandomizedAnswers 
 
             foreach (var card in shuffledFlashCards)
             {
@@ -62,10 +62,11 @@ namespace QuizMaker
                 Dictionary<int, Answer> keyValues = OpenWithNumberKey(randomAnswers);
 
                 // UI method to display question and also random choices
-                // Get response, insert response into object.
                 UI.DisplayFlashCard(card, randomAnswers);
-                
 
+                // Get response, insert response into object.
+                int answerCount = card.RandomizedAnswers.Count;
+                card.Response = keyValues[UI.GetNumResponse(answerCount)];
 
             }
 

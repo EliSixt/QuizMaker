@@ -7,6 +7,24 @@ namespace QuizMaker
     public static class UI
     {
         /// <summary>
+        /// Gets a number response from the user.
+        /// The number chosen is a key to an answer choice. 
+        /// </summary>
+        /// <param name="count">Limiting number count.</param>
+        /// <returns>Int</returns>
+        public static int GetNumResponse(int count)
+        {
+            do
+            {
+                int response = Convert.ToInt32(Console.ReadLine());
+                if (response <= count)
+                {
+                    return response;
+                }
+                Console.WriteLine("Please enter a valid answer.");
+            } while (true);
+        }
+        /// <summary>
         /// Asks user what the question they want to input, gets input.
         /// </summary>
         /// <returns>String Question from the Console.</returns>
