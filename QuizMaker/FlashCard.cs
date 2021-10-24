@@ -18,9 +18,18 @@ namespace QuizMaker
         }
         public List<Answer> Response { get; set; }
 
+        private List<Answer> _randomizedAnswers = null;
+
         public List<Answer> RandomizedAnswers
         {
-            get { return ListRandomizer(_answers); }
+            get 
+            {
+                if(_randomizedAnswers == null)
+                {
+                    _randomizedAnswers = ListRandomizer(_answers);
+                }
+                return _randomizedAnswers;
+            }
         }
 
 
