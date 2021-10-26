@@ -86,7 +86,16 @@ namespace QuizMaker
             //Todo: Create a 2 methods, one that returns a boolean asking the user whether they want to continue using the same flashcards, or
             //they want to generate a new list of just the ones they got wrong. The second method will loop through the flashcard list and 
             //delete any flashcards that the user got Correct if the first method passes.
+            //if (UI.ReviewWrongAnswers())
+            //{
+            //    for (int i = 0; i < shuffledFlashCards.Count; i++)
+            //    {
+            //        if (shuffledFlashCards[i].Response.Contains())
+            //        {
 
+            //        }
+            //    }
+            //}
 
             //using the XmlWriter method to serialize.
             //XmlWriter(flashCards, filePath);
