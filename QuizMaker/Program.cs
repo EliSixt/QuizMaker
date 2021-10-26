@@ -70,10 +70,7 @@ namespace QuizMaker
                 //accurate.
                 int answerCount = card.RandomizedAnswers.Count;
                 int playersChoice = UI.GetNumResponse(answerCount);
-                if (!card.Response.Contains(keyValues[playersChoice]))
-                {
-                    card.Response.Add(keyValues[playersChoice]);
-                }
+                card.Response.Add(keyValues[playersChoice]);
 
                 //Keeps track of the player's score
                 foreach (var item in card.Response)
@@ -83,11 +80,13 @@ namespace QuizMaker
                         score++;
                     }
                 }
+                //card.Response.Remove(keyValues[playersChoice]);
             }
 
             //Todo: Create a 2 methods, one that returns a boolean asking the user whether they want to continue using the same flashcards, or
             //they want to generate a new list of just the ones they got wrong. The second method will loop through the flashcard list and 
             //delete any flashcards that the user got Correct if the first method passes.
+
 
             //using the XmlWriter method to serialize.
             //XmlWriter(flashCards, filePath);

@@ -58,7 +58,7 @@ namespace QuizMaker
         /// Asks the user if they want to add another answer.
         /// </summary>
         /// <returns>Boolean</returns>
-        public static bool IsAddingAnswers()
+        public static bool IsAddingAnswers() //Todo: add an if !null then excute this method.
         {
             Console.WriteLine("Do you want to add an answer choice? y/n");
             bool response = GetUserResponse();
@@ -149,6 +149,17 @@ namespace QuizMaker
             //    return true;
             //}
             //return false;
+        }
+        /// <summary>
+        /// Asks the user whether they want to continue using the same flashcards, or
+        /// they want to generate a new list of just the ones they got wrong.
+        /// </summary>
+        /// <returns>Boolean.</returns>
+        public static bool ReviewWrongAnswers()
+        {
+            Console.WriteLine("Do you want to review through the questions you just got wrong? y/n");
+            Console.WriteLine("Note: Your correct questions will be deleted.");
+            return GetUserResponse();
         }
     }
 }
