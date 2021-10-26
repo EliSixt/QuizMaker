@@ -76,6 +76,7 @@ namespace QuizMaker
         }
         public static void DisplayFlashCard(FlashCard card, List<Answer> answerChoices)
         {
+            Console.Clear();
             Console.WriteLine(card.TheQuestion);
             Console.WriteLine("select all that apply:");
             for (int i = 0; i < answerChoices.Count; i++)

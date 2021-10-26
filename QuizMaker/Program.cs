@@ -11,6 +11,7 @@ namespace QuizMaker
     {
         static void Main(string[] args)
         {
+            int score = 0;
             //Get from UI method. Ask how many questions they're planning on doing.
             int numberOfQuestions = 1;
             List<FlashCard> flashCards = new();
@@ -52,24 +53,46 @@ namespace QuizMaker
             {
                 //to keep RandomizedAnswers from being randomized over and over, just create a new list and add those randomized answers
                 //so it can be used as a reference without the randomization being called.
-                List<Answer> randomAnswers = new();
-                foreach (Answer item in card.RandomizedAnswers)
-                {
-                    randomAnswers.Add(item);
-                }
+                //List<Answer> randomAnswers = new();
+                //foreach (Answer item in card.RandomizedAnswers)
+                //{
+                //    randomAnswers.Add(item);
+                //}
 
                 //Maps a set of 'keys' to a set of 'values'. In this case it'll be an int to card.randomizedAnswers[i].
-                Dictionary<int, Answer> keyValues = OpenWithNumberKey(randomAnswers);
+                Dictionary<int, Answer> keyValues = OpenWithNumberKey(card.RandomizedAnswers);
 
                 // UI method to display question and also random choices
-                UI.DisplayFlashCard(card, randomAnswers);
+                UI.DisplayFlashCard(card, card.RandomizedAnswers);
 
-                // Get response, insert response into object.
+                // Get response, insert response into object only if
+                // the card.response doesnt contain the same one. Keeps the scoring log
+                //accurate.
                 int answerCount = card.RandomizedAnswers.Count;
-                card.Response.Add(keyValues[UI.GetNumResponse(answerCount)]);
+                int playersChoice = UI.GetNumResponse(answerCount);
+                if (!card.Response.Contains(keyValues[playersChoice]))
+                {
+                    card.Response.Add(keyValues[playersChoice]);
+                }
 
+                //Keeps track of the player's score
+                foreach (var item in card.Response)
+                {
+                    if (item.IsCorrect == true)
+                    {
+                        score++;
+                    }
+                }
             }
 
+            //Todo: Create a 2 methods, one that returns a boolean asking the user whether they want to continue using the same flashcards, or
+            //they want to generate a new list of just the ones they got wrong. The second method will loop through the flashcard list and 
+            //delete any flashcards that the user got Correct if the first method passes.
+
+            //using the XmlWriter method to serialize.
+            //XmlWriter(flashCards, filePath);
+
+            //Console.WriteLine($"your score is {score}!");
         }
 
 
