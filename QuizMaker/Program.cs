@@ -13,7 +13,7 @@ namespace QuizMaker
         {
             int score = 0;
             //Get from UI method. Ask how many questions they're planning on doing.
-            int numberOfQuestions = 1;
+            int numberOfQuestions = 3;
             List<FlashCard> flashCards = new();
             string filePath = @"C:\TMP\text.xml";
 
@@ -70,37 +70,67 @@ namespace QuizMaker
                 //accurate.
                 int answerCount = card.RandomizedAnswers.Count;
                 int playersChoice = UI.GetNumResponse(answerCount);
-                card.Response.Add(keyValues[playersChoice]);
+                card.Response = (keyValues[playersChoice]);
 
                 //Keeps track of the player's score
-                foreach (var item in card.Response)
+                //foreach (var item in card.Response)
+                //{
+                //    if (item.IsCorrect == true)
+                //    {
+                //        score++;
+                //    }
+                //}
+
+                if (card.Response.IsCorrect == true)
                 {
-                    if (item.IsCorrect == true)
-                    {
-                        score++;
-                    }
+                    score++;
                 }
+
                 //card.Response.Remove(keyValues[playersChoice]);
             }
+
+            //Console.WriteLine($"your score is {score}!");
+
+
+            //Only if score is not 100% you can do the option of ReviewingWrongAnswers below.
 
             //Todo: Create a 2 methods, one that returns a boolean asking the user whether they want to continue using the same flashcards, or
             //they want to generate a new list of just the ones they got wrong. The second method will loop through the flashcard list and 
             //delete any flashcards that the user got Correct if the first method passes.
-            //if (UI.ReviewWrongAnswers())
-            //{
-            //    for (int i = 0; i < shuffledFlashCards.Count; i++)
-            //    {
-            //        if (shuffledFlashCards[i].Response.Contains())
-            //        {
+            if (UI.ReviewWrongAnswers())
+            {
+                //for (int i = 0; i < shuffledFlashCards.Count; i++)
+                //{
+                //    if (shuffledFlashCards[i].Response.Contains())
+                //    {
 
-            //        }
-            //    }
-            //}
+                //    }
+                //}
 
-            //using the XmlWriter method to serialize.
-            //XmlWriter(flashCards, filePath);
+                //foreach (FlashCard card in flashCards) //Keeps crashing because the "collection was modified" while being iterated. Didnt like that
+                //{
+                //    foreach (Answer answerItem in card.Response)
+                //    {
+                //        if (answerItem.IsCorrect == true)
+                //        {
+                //            flashCards.Remove(card);
+                //        }
+                //    }
+                //}
 
-            //Console.WriteLine($"your score is {score}!");
+                //for (int i = flashCards.Count - 1; i >= 0; i--)
+                //{
+                //        if (flashCards[i].Response.IsCorrect.Equals(true))
+                //        {
+                //            flashCards.RemoveAt(i);
+                //        }
+                //}
+
+                flashCards = OmitCorrectResponsesFromList(flashCards);
+
+                //using the XmlWriter method to serialize.
+                XmlWriter(flashCards, filePath);
+            }
         }
 
 
@@ -180,6 +210,22 @@ namespace QuizMaker
                 keys.Add(i + 1, answerList[i]);
             }
             return keys;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="flashcards"></param>
+        /// <returns></returns>
+        public static List<FlashCard> OmitCorrectResponsesFromList(List<FlashCard> flashcards)
+        {
+            for (int i = flashcards.Count - 1; i >= 0; i--)
+            {
+                if (flashcards[i].Response.IsCorrect == true)
+                {
+                    flashcards.RemoveAt(i);
+                }
+            }
+            return flashcards;
         }
     }
 }

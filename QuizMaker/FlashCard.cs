@@ -16,7 +16,7 @@ namespace QuizMaker
             get { return _answers; }
             set { _answers = value; }
         }
-        public List<Answer> Response { get; set; }
+        public Answer Response { get; set; }
 
         private List<Answer> _randomizedAnswers = null;
 
