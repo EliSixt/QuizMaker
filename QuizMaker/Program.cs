@@ -89,7 +89,7 @@ namespace QuizMaker
                 //card.Response.Remove(keyValues[playersChoice]);
             }
 
-            //Console.WriteLine($"your score is {score}!");
+            UI.Score(score, flashCards.Count);
 
 
             //Only if score is not 100% you can do the option of ReviewingWrongAnswers below.
@@ -212,10 +212,10 @@ namespace QuizMaker
             return keys;
         }
         /// <summary>
-        /// 
+        /// Loops through the flashcard list and deletes any Cards that the user got Correct.
         /// </summary>
         /// <param name="flashcards"></param>
-        /// <returns></returns>
+        /// <returns>revised list of flashcards</returns>
         public static List<FlashCard> OmitCorrectResponsesFromList(List<FlashCard> flashcards)
         {
             for (int i = flashcards.Count - 1; i >= 0; i--)

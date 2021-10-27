@@ -161,5 +161,16 @@ namespace QuizMaker
             Console.WriteLine("Note: Your correct questions will be deleted.");
             return GetUserResponse();
         }
+        /// <summary>
+        /// Displays correct-questions out of number-of-questions were correct.
+        /// </summary>
+        /// <param name="score">The number of correct responses</param>
+        /// <param name="flashCardCount">The number of flashcards in the questionair</param>
+        public static void Score(int score, int flashCardCount)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"Your score: {score}/{flashCardCount}.");
+            Console.WriteLine();
+        }
     }
 }
