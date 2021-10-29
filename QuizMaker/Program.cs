@@ -22,7 +22,7 @@ namespace QuizMaker
                 //else it'll create a new set of flashcards (from the user inputs) and create 
                 //a new xml textfile.
                 //flashCards.Clear();
-                if (File.Exists(filePath) && !UI.LoadSavedQuestions())
+                if (File.Exists(filePath) && !UI.LoadSavedFlashcards())
                 {
                     //Both are lists so they should work coherently.
                     flashCards = XmlReader<List<FlashCard>>(filePath);
@@ -71,19 +71,27 @@ namespace QuizMaker
 
 
                 UI.Score(score, flashCards.Count);
-                UI.DisplayCorrectlyAnswered(shuffledFlashCards);
 
-                //TODO: only if score is not 100% you can do the option of ReviewingWrongAnswers below.
-
+                if (score > 0)
+                {
+                    UI.DisplayCorrectlyAnswered(shuffledFlashCards);
+                }
+                else
+                {
+                    UI.DisplayLosingMessage();
+                }
                 //Todo: Create a 2 methods, one that returns a boolean asking the user whether they want to continue using the same flashcards, or
                 //they want to generate a new list of just the ones they got wrong. The second method will loop through the flashcard list and 
                 //delete any flashcards that the user got Correct if the first method passes.
-                if (UI.ReviewWrongAnswers())
+                if (score < flashCards.Count)
                 {
-                    flashCards = OmitCorrectResponsesFromList(flashCards);
+                    if (UI.ReviewWrongAnswers())
+                    {
+                        flashCards = OmitCorrectResponsesFromList(flashCards);
 
-                    //using the XmlWriter method to serialize.
-                    XmlWriter(flashCards, filePath);
+                        //using the XmlWriter method to serialize.
+                        XmlWriter(flashCards, filePath);
+                    }
                 }
             } while (true);
         }
@@ -103,7 +111,7 @@ namespace QuizMaker
 
             card.TheQuestion = UI.GetQuestion();
 
-            while (UI.IsAddingAnswers())
+            while (UI.AddAdditionalAnswers())
             {
 
                 card.Answers.Add(new Answer { StoredAnswer = UI.GetAnswer(), IsCorrect = UI.IsACorrectAnswer() });

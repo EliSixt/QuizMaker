@@ -16,7 +16,7 @@ namespace QuizMaker
         {
             do
             {
-                int response = Convert.ToInt32(Console.ReadLine());
+                int response = Convert.ToInt32(Console.ReadLine()); //Exception handling required here for non-ints
                 if (response <= count)
                 {
                     return response;
@@ -30,7 +30,7 @@ namespace QuizMaker
         /// <returns>String Question from the Console.</returns>
         public static string GetQuestion()
         {
-            Console.WriteLine("Enter the question.");
+            Console.WriteLine("Enter question:");
             string question = Console.ReadLine();
             return question;
         }
@@ -40,7 +40,7 @@ namespace QuizMaker
         /// <returns>string Answer from the Console.</returns>
         public static string GetAnswer()
         {
-            Console.WriteLine("Enter the answer choice.");
+            Console.WriteLine("Enter answer choice:");
             string answer = Console.ReadLine();
             return answer;
         }
@@ -58,9 +58,9 @@ namespace QuizMaker
         /// Asks the user if they want to add another answer.
         /// </summary>
         /// <returns>Boolean</returns>
-        public static bool IsAddingAnswers() //Todo: add an if !null then excute this method.
+        public static bool AddAdditionalAnswers() //Todo: add an if !null then excute this method.
         {
-            Console.WriteLine("Do you want to add an answer choice? y/n");
+            Console.WriteLine("Add another answer? y/n");
             bool response = GetUserResponse();
             return response;
         }
@@ -68,10 +68,11 @@ namespace QuizMaker
         /// Asks the user if they want to create a new set of flashcards.
         /// </summary>
         /// <returns>Boolean</returns>
-        public static bool LoadSavedQuestions()
+        public static bool LoadSavedFlashcards()
         {
+            Console.WriteLine();
             Console.WriteLine("Do you want to create a new set of flashcards? y/n");
-            Console.WriteLine("Note: Stored flashcards will load.");
+            Console.WriteLine("Note: Stored flashcards will be replaced by new set.");
             return GetUserResponse();
         }
         public static void DisplayFlashCard(FlashCard card, List<Answer> answerChoices)
@@ -150,8 +151,8 @@ namespace QuizMaker
         public static bool ReviewWrongAnswers()
         {
             Console.WriteLine();
-            Console.WriteLine("Do you want to review through the questions you just got wrong? y/n");
-            Console.WriteLine("Note: Your correct questions will be deleted.");
+            Console.WriteLine("Review through only incorrectly answered flashcards? y/n");
+            Console.WriteLine("Note: Your correctly answered flashcards will be deleted.");
             return GetUserResponse();
         }
         /// <summary>
@@ -163,7 +164,7 @@ namespace QuizMaker
         {
             Console.Clear();
             Console.WriteLine();
-            Console.WriteLine($"Your score: {score}/{flashCardCount}.");
+            Console.WriteLine($"Your score: {score}/{flashCardCount}!!");
             Console.WriteLine();
         }
         /// <summary>
@@ -180,6 +181,13 @@ namespace QuizMaker
                     Console.WriteLine($"{card.TheQuestion} => {card.Response}");
                 }
             }
+        }
+        /// <summary>
+        /// A losing message for no correct answers.
+        /// </summary>
+        public static void DisplayLosingMessage()
+        {
+            Console.WriteLine("You have no correct answers ):");
         }
     }
 }
