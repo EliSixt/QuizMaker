@@ -11,126 +11,81 @@ namespace QuizMaker
     {
         static void Main(string[] args)
         {
-            int score = 0;
             //Get from UI method. Ask how many questions they're planning on doing.
             int numberOfQuestions = 3;
             List<FlashCard> flashCards = new();
             string filePath = @"C:\TMP\text.xml";
-
-            //if the file exists and the user doesnt want to create a new set of flashcards
-            //it'll read the stored file.
-            //else it'll create a new set of flashcards (from the user inputs) and create 
-            //a new xml textfile.
-            if (File.Exists(filePath) && !UI.LoadSavedQuestions())
+            do
             {
-                //Both are lists so they should work coherently.
-                flashCards = XmlReader<List<FlashCard>>(filePath);
-            }
-            else
-            {
-                ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
-                for (int i = 0; i < numberOfQuestions; i++)
+                //if the file exists and the user doesnt want to create a new set of flashcards
+                //it'll read the stored file.
+                //else it'll create a new set of flashcards (from the user inputs) and create 
+                //a new xml textfile.
+                //flashCards.Clear();
+                if (File.Exists(filePath) && !UI.LoadSavedQuestions())
                 {
-                    FlashCard card = ProduceNewCard(); //methods naming?! and should jsut return one card
-                    flashCards.Add(card);
+                    //Both are lists so they should work coherently.
+                    flashCards = XmlReader<List<FlashCard>>(filePath);
+                }
+                else
+                {
+                    ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
+                    for (int i = 0; i < numberOfQuestions; i++)
+                    {
+                        FlashCard card = ProduceNewCard(); //methods naming?! and should jsut return one card
+                        flashCards.Add(card);
+                    }
+
+                    //using the XmlWriter method to serialize.
+                    XmlWriter(flashCards, filePath);
                 }
 
-                //using the XmlWriter method to serialize.
-                XmlWriter(flashCards, filePath);
-            }
+                //TODO:
+                //After quizlist is filled.
+                // Ask each question (UI methods) in quizlist at random. Get response,  
+                // figure out if the response is the answer or not. 
+                // Keep track of score.
 
-            //TODO:
-            //After quizlist is filled.
-            // Ask each question (UI methods) in quizlist at random. Get response,  
-            // figure out if the response is the answer or not. 
-            // Keep track of score.
+                List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
+                int score = 0;
 
-            //Random rng = new Random();
-            //var randomOrderQuizList = flashCards.OrderBy(i => rng.Next());
-            List<FlashCard> shuffledFlashCards = ListRandomizer(flashCards);
-
-            foreach (var card in shuffledFlashCards)
-            {
-                //to keep RandomizedAnswers from being randomized over and over, just create a new list and add those randomized answers
-                //so it can be used as a reference without the randomization being called.
-                //List<Answer> randomAnswers = new();
-                //foreach (Answer item in card.RandomizedAnswers)
-                //{
-                //    randomAnswers.Add(item);
-                //}
-
-                //Maps a set of 'keys' to a set of 'values'. In this case it'll be an int to card.randomizedAnswers[i].
-                Dictionary<int, Answer> keyValues = OpenWithNumberKey(card.RandomizedAnswers);
-
-                // UI method to display question and also random choices
-                UI.DisplayFlashCard(card, card.RandomizedAnswers);
-
-                // Get response, insert response into object only if
-                // the card.response doesnt contain the same one. Keeps the scoring log
-                //accurate.
-                int answerCount = card.RandomizedAnswers.Count;
-                int playersChoice = UI.GetNumResponse(answerCount);
-                card.Response = (keyValues[playersChoice]);
-
-                //Keeps track of the player's score
-                //foreach (var item in card.Response)
-                //{
-                //    if (item.IsCorrect == true)
-                //    {
-                //        score++;
-                //    }
-                //}
-
-                if (card.Response.IsCorrect == true)
+                foreach (var card in shuffledFlashCards)
                 {
-                    score++;
+                    //Maps a set of 'keys' to a set of 'values'. In this case it'll be an int to card.randomizedAnswers[i].
+                    Dictionary<int, Answer> keyValues = OpenWithNumberKey(card.RandomizedAnswers);
+
+                    // UI method to display question and also random choices
+                    UI.DisplayFlashCard(card, card.RandomizedAnswers);
+
+                    // Get response, insert response into object
+                    int answerCount = card.RandomizedAnswers.Count;
+                    int playersChoice = UI.GetNumResponse(answerCount);
+                    card.Response = (keyValues[playersChoice]);
+
+                    //Keeps track of the player's score
+                    if (card.Response.IsCorrect == true)
+                    {
+                        score++;
+                    }
                 }
 
-                //card.Response.Remove(keyValues[playersChoice]);
-            }
 
-            UI.Score(score, flashCards.Count);
+                UI.Score(score, flashCards.Count);
+                UI.DisplayCorrectlyAnswered(shuffledFlashCards);
 
+                //TODO: only if score is not 100% you can do the option of ReviewingWrongAnswers below.
 
-            //Only if score is not 100% you can do the option of ReviewingWrongAnswers below.
+                //Todo: Create a 2 methods, one that returns a boolean asking the user whether they want to continue using the same flashcards, or
+                //they want to generate a new list of just the ones they got wrong. The second method will loop through the flashcard list and 
+                //delete any flashcards that the user got Correct if the first method passes.
+                if (UI.ReviewWrongAnswers())
+                {
+                    flashCards = OmitCorrectResponsesFromList(flashCards);
 
-            //Todo: Create a 2 methods, one that returns a boolean asking the user whether they want to continue using the same flashcards, or
-            //they want to generate a new list of just the ones they got wrong. The second method will loop through the flashcard list and 
-            //delete any flashcards that the user got Correct if the first method passes.
-            if (UI.ReviewWrongAnswers())
-            {
-                //for (int i = 0; i < shuffledFlashCards.Count; i++)
-                //{
-                //    if (shuffledFlashCards[i].Response.Contains())
-                //    {
-
-                //    }
-                //}
-
-                //foreach (FlashCard card in flashCards) //Keeps crashing because the "collection was modified" while being iterated. Didnt like that
-                //{
-                //    foreach (Answer answerItem in card.Response)
-                //    {
-                //        if (answerItem.IsCorrect == true)
-                //        {
-                //            flashCards.Remove(card);
-                //        }
-                //    }
-                //}
-
-                //for (int i = flashCards.Count - 1; i >= 0; i--)
-                //{
-                //        if (flashCards[i].Response.IsCorrect.Equals(true))
-                //        {
-                //            flashCards.RemoveAt(i);
-                //        }
-                //}
-
-                flashCards = OmitCorrectResponsesFromList(flashCards);
-
-                //using the XmlWriter method to serialize.
-                XmlWriter(flashCards, filePath);
-            }
+                    //using the XmlWriter method to serialize.
+                    XmlWriter(flashCards, filePath);
+                }
+            } while (true);
         }
 
 

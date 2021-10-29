@@ -82,15 +82,7 @@ namespace QuizMaker
             for (int i = 0; i < answerChoices.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {answerChoices[i]}");
-
-                //Maybe put in a method for referencing card.randomizedAnswers??? 
             }
-
-            //foreach (Answer item in card.RandomizedAnswers)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
         }
         /// <summary>
         /// Gets the Y/N response from the console and returns it as a boolean.
@@ -157,20 +149,37 @@ namespace QuizMaker
         /// <returns>Boolean.</returns>
         public static bool ReviewWrongAnswers()
         {
+            Console.WriteLine();
             Console.WriteLine("Do you want to review through the questions you just got wrong? y/n");
             Console.WriteLine("Note: Your correct questions will be deleted.");
             return GetUserResponse();
         }
         /// <summary>
-        /// Displays correct-questions out of number-of-questions were correct.
+        /// Displays correct-questions out of number-of-questions that are correct.
         /// </summary>
         /// <param name="score">The number of correct responses</param>
         /// <param name="flashCardCount">The number of flashcards in the questionair</param>
         public static void Score(int score, int flashCardCount)
         {
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine($"Your score: {score}/{flashCardCount}.");
             Console.WriteLine();
+        }
+        /// <summary>
+        /// Shows the player their correctly answered Questions.
+        /// </summary>
+        /// <param name="AnsweredFlashCards">Flashcard list with the responses filled.</param>
+        public static void DisplayCorrectlyAnswered(List<FlashCard> AnsweredFlashCards)
+        {
+            Console.WriteLine("Correctly Answered:");
+            foreach (FlashCard card in AnsweredFlashCards)
+            {
+                if (card.Response.IsCorrect)
+                {
+                    Console.WriteLine($"{card.TheQuestion} => {card.Response}");
+                }
+            }
         }
     }
 }
