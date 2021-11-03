@@ -111,12 +111,25 @@ namespace QuizMaker
 
             card.TheQuestion = UI.GetQuestion();
 
-            while (UI.AddAdditionalAnswers())
+            bool hasNoCorrectAnswers = true;
+
+            do
             {
-
                 card.Answers.Add(new Answer { StoredAnswer = UI.GetAnswer(), IsCorrect = UI.IsACorrectAnswer() });
-            }
 
+                foreach (var item in card.Answers)
+                {
+                    if (item.IsCorrect)
+                    {
+                        hasNoCorrectAnswers = false;
+                    }
+                }
+            } while (hasNoCorrectAnswers || UI.AddAdditionalAnswers());
+
+            //while (UI.AddAdditionalAnswers())
+            //{
+            //    card.Answers.Add(new Answer { StoredAnswer = UI.GetAnswer(), IsCorrect = UI.IsACorrectAnswer() });
+            //}
 
             return card;
         }

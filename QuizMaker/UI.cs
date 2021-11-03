@@ -72,7 +72,7 @@ namespace QuizMaker
         {
             Console.WriteLine();
             Console.WriteLine("Do you want to create a new set of flashcards? y/n");
-            Console.WriteLine("Note: Stored flashcards will be replaced by new set.");
+            Console.WriteLine("Note: Stored flashcards will be replaced by a new set.");
             return GetUserResponse();
         }
         public static void DisplayFlashCard(FlashCard card, List<Answer> answerChoices)
@@ -151,7 +151,7 @@ namespace QuizMaker
         public static bool ReviewWrongAnswers()
         {
             Console.WriteLine();
-            Console.WriteLine("Review through only incorrectly answered flashcards? y/n");
+            Console.WriteLine("Would you like to review the incorrect flashcards? y/n");
             Console.WriteLine("Note: Your correctly answered flashcards will be deleted.");
             return GetUserResponse();
         }
