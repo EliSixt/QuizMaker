@@ -29,6 +29,7 @@ namespace QuizMaker
                 }
                 else
                 {
+
                     ////TODO: use a loop of some sort to make quizlist.Add be able to store / add multiple questions.
                     for (int i = 0; i < numberOfQuestions; i++)
                     {
@@ -99,12 +100,12 @@ namespace QuizMaker
 
 
         /// <summary>
-        /// Creates a new FlashCard Card object and a List<FlashCard>. 
+        /// Creates a new FlashCard Card object
         /// Inserts the user's input 'Question' into the Card, inserts the user's input 'Answer choices' into the same Card,
-        /// then adds the filled Card to the List<FlashCard>
-        /// along with any additional 'Answer choices' to the Card.
+        /// along with any additional 'Answer choices' to the Card. Will keep asking for answer choices until at least
+        /// one answer is a correct option.
         /// </summary>
-        /// <returns>A user filled List<FlashCard> Object.</returns>
+        /// <returns>FlashCard Card object</returns>
         static FlashCard ProduceNewCard()
         {
             FlashCard card = new();
@@ -125,12 +126,6 @@ namespace QuizMaker
                     }
                 }
             } while (hasNoCorrectAnswers || UI.AddAdditionalAnswers());
-
-            //while (UI.AddAdditionalAnswers())
-            //{
-            //    card.Answers.Add(new Answer { StoredAnswer = UI.GetAnswer(), IsCorrect = UI.IsACorrectAnswer() });
-            //}
-
             return card;
         }
         /// <summary>

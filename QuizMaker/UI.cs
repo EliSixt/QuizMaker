@@ -25,17 +25,20 @@ namespace QuizMaker
             } while (true);
         }
         /// <summary>
-        /// Asks user what the question they want to input, gets input.
+        /// Asks user for a question to input, gets input.
         /// </summary>
         /// <returns>String Question from the Console.</returns>
         public static string GetQuestion()
         {
+            Console.Clear();
+            Console.WriteLine("Note: You will be asked to provide additional answer choices until one is a correct option.");
+            Console.WriteLine();
             Console.WriteLine("Enter question:");
             string question = Console.ReadLine();
             return question;
         }
         /// <summary>
-        ///  Asks user what the answer they want to input, gets input.
+        ///  Asks user for an answer to input, gets input.
         /// </summary>
         /// <returns>string Answer from the Console.</returns>
         public static string GetAnswer()
@@ -48,7 +51,7 @@ namespace QuizMaker
         /// Follow-up to GetAnswer(), asks if that answer is correct or not.
         /// Recieves input response converts it into a boolean.
         /// </summary>
-        /// <returns>Bool of the player's choice, if the answer is correct.</returns>
+        /// <returns>Bool if the answer is correct.</returns>
         public static bool IsACorrectAnswer()
         {
             Console.WriteLine("Is that a correct answer? y/n");
@@ -75,6 +78,11 @@ namespace QuizMaker
             Console.WriteLine("Note: Stored flashcards will be replaced by a new set.");
             return GetUserResponse();
         }
+        /// <summary>
+        /// Displays a flashcard along with the answer choices and their respective mapped keys.
+        /// </summary>
+        /// <param name="card">FlashCard card item to display</param>
+        /// <param name="answerChoices">List of the answerChoices to display</param>
         public static void DisplayFlashCard(FlashCard card, List<Answer> answerChoices)
         {
             Console.Clear();
@@ -156,7 +164,7 @@ namespace QuizMaker
             return GetUserResponse();
         }
         /// <summary>
-        /// Displays correct-questions out of number-of-questions that are correct.
+        /// Displays correct-questions of number-of-questions that are correct.
         /// </summary>
         /// <param name="score">The number of correct responses</param>
         /// <param name="flashCardCount">The number of flashcards in the questionair</param>
