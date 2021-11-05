@@ -189,14 +189,15 @@ namespace QuizMaker
         /// <returns>revised list of flashcards</returns>
         public static List<FlashCard> OmitCorrectResponsesFromList(List<FlashCard> flashcards)
         {
-            for (int i = flashcards.Count - 1; i >= 0; i--)
-            {
-                if (flashcards[i].Response.IsCorrect == true)
-                {
-                    flashcards.RemoveAt(i);
-                }
-            }
-            return flashcards;
+            //for (int i = flashcards.Count - 1; i >= 0; i--)
+            //{
+            //    if (flashcards[i].Response.IsCorrect == true)
+            //    {
+            //        flashcards.RemoveAt(i);
+            //    }
+            //}
+
+            return flashcards.Where(x => x.Response.IsCorrect == false).ToList();
         }
     }
 }
