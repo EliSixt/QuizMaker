@@ -14,15 +14,23 @@ namespace QuizMaker
         /// <returns>Int</returns>
         public static int GetNumResponse(int count)
         {
+            int response = 0;
+            bool rational = false;
             do
             {
-                int response = Convert.ToInt32(Console.ReadLine()); //Exception handling required here for non-ints
-                if (response <= count)
-                {
-                    return response;
-                }
-                Console.WriteLine("Please enter a valid answer.");
-            } while (true);
+                rational = int.TryParse(Console.ReadLine(), out response) && response <= count && response > 0;
+            } while (!rational);
+            return response;
+            
+            //do
+            //{
+            //    int response = Convert.ToInt32(Console.ReadLine()); //Exception handling required here for non-ints
+            //    if (response <= count)
+            //    {
+            //return response;
+            //    }
+            //    Console.WriteLine("Please enter a valid answer.");
+            //} while (true);
         }
         /// <summary>
         /// Asks user for a question to input, gets input.
