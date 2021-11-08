@@ -15,16 +15,16 @@ namespace QuizMaker
         public static int GetNumResponse(int count)
         {
             int response = 0;
-            bool rationalNum = false;
+            bool validNum = false;
             do
             {
-                rationalNum = int.TryParse(Console.ReadLine(), out response) && response <= count && response > 0;
-                if (!rationalNum)
+                validNum = int.TryParse(Console.ReadLine(), out response) && response <= count && response > 0;
+                if (!validNum)
                 {
                     Console.WriteLine("Please enter a valid answer.");
 
                 }
-            } while (!rationalNum);
+            } while (!validNum);
             return response;
 
             //int response = 0;
