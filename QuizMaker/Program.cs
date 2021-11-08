@@ -37,6 +37,7 @@ namespace QuizMaker
                         flashCards.Add(card);
                     }
 
+                    Directory.CreateDirectory(@"C:\TMP");
                     //using the XmlWriter method to serialize.
                     XmlWriter(flashCards, filePath);
                 }
@@ -146,9 +147,9 @@ namespace QuizMaker
         public static void XmlWriter<T>(List<T> listToStore, string aFilePath)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<T>));
-            using (TextWriter tx = new StreamWriter(aFilePath))
+            using (FileStream file = File.Create(aFilePath))
             {
-                xmlSerializer.Serialize(tx, listToStore);
+                xmlSerializer.Serialize(file, listToStore);
             }
 
         }
@@ -161,9 +162,9 @@ namespace QuizMaker
         public static T XmlReader<T>(string aFilePath)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            using (TextReader tx = new StreamReader(aFilePath))
+            using (FileStream file = File.OpenRead(aFilePath))
             {
-                return (T)xmlSerializer.Deserialize(tx);
+                return (T)xmlSerializer.Deserialize(file);
             }
         }
         /// <summary>
